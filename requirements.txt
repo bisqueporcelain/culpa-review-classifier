@@ -1,0 +1,6 @@
+transformers>=4.40
+torch>=2.2
+pandas>=2.0
+scikit-learn>=1.4
+tqdm>=4.66
+jupyterlab>=4.0

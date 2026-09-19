@@ -1,0 +1,27 @@
+# Secrets — never commit
+*.env
+!.env.example
+SECRETS.env
+KEYS.env
+*.key
+*.pem
+msal_cache.bin
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env/
+*.egg-info/
+.ipynb_checkpoints/
+.ruff_cache/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Raw scrape — not redistributed. See README.
+data/review.csv
+data/raw/
