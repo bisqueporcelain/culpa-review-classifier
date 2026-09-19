@@ -2,8 +2,6 @@
 
 Zero-shot classification of Columbia course reviews along dimensions students actually care about — workload, difficulty, grading fairness, lecture quality — using natural-language labels instead of a trained classifier.
 
-> **Status: work in progress.** Exploration notebook runs; full-corpus classification and evaluation are not finished yet. See [Roadmap](#roadmap).
-
 ## Why
 
 CULPA reviews carry a 1–5 numeric rating and a free-text body. The number tells you whether someone liked the class; the text tells you *why*, but nobody has aggregated that. A student deciding between two sections wants "heavy reading, generous grader" — not a 3.8.
