@@ -1,8 +1,22 @@
 # CULPA Review Classifier
 
-Zero-shot classification of Columbia course reviews along the dimensions students care about: workload, difficulty, grading fairness, lecture quality. Uses natural-language labels with NLI models instead of a trained classifier.
+Designed for publication in a Columbia Daily Spectator article under the Data Visualization division. Zero-shot classification of Columbia course reviews along the dimensions students care about: workload, difficulty, grading fairness, lecture quality. Uses natural-language labels with NLI models instead of a trained classifier.
 
 CULPA reviews pair a 1 to 5 rating with free text. The rating says whether someone liked the class. The text says why, and nobody has aggregated that. Zero-shot fits because the useful labels are unknown in advance and there is no labeled training set, while the numeric rating gives a partial ground truth to validate against.
+
+## Output
+
+Each review is placed on a two-axis compass. The x-axis is what the review is about, from professor-focused (blue) to course-focused (orange), scored by zero-shot NLI. The y-axis is sentiment, scored by a RoBERTa sentiment model. Every point is a review, and hovering shows the excerpt.
+
+<p align="center">
+  <img src="assets/review_compass.png" alt="Scatter plot of 200 CULPA reviews. X-axis: review focus from professor to course. Y-axis: sentiment from negative to positive." width="720">
+</p>
+
+<p align="center">
+  <img src="assets/review_compass_hover.png" alt="The same chart with a hover tooltip showing a review excerpt for a professor-focused, positive point." width="720">
+</p>
+
+The interactive version is in [notebooks/culpa_review_compass_page.html](notebooks/culpa_review_compass_page.html).
 
 ## Running it
 
