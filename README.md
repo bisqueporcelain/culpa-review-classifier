@@ -38,15 +38,6 @@ jupyter lab notebooks/01_zero_shot_exploration.ipynb
 
 First run downloads model weights (~1.6GB for BART-MNLI).
 
-## Roadmap
-
-- [ ] Batch classification over the full corpus with checkpointing
-- [ ] Validation: predicted sentiment vs. numeric rating (agreement, confusion matrix)
-- [ ] Label-set ablation — which candidate labels are actually separable?
-- [ ] Compare the two models on cost/latency/agreement
-- [ ] Per-instructor aggregate profiles
-- [ ] Streamlit demo: paste a review, see the dimension breakdown
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
