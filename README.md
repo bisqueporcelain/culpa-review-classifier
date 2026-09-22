@@ -1,32 +1,8 @@
 # CULPA Review Classifier
 
-Zero-shot classification of Columbia course reviews along dimensions students actually care about — workload, difficulty, grading fairness, lecture quality — using natural-language labels instead of a trained classifier.
+Zero-shot classification of Columbia course reviews along the dimensions students care about: workload, difficulty, grading fairness, lecture quality. Uses natural-language labels with NLI models instead of a trained classifier.
 
-## Why
-
-CULPA reviews carry a 1–5 numeric rating and a free-text body. The number tells you whether someone liked the class; the text tells you *why*, but nobody has aggregated that. A student deciding between two sections wants "heavy reading, generous grader" — not a 3.8.
-
-Zero-shot classification suits this well: the interesting labels aren't known in advance and there's no labeled training set, but the numeric ratings give a partial ground truth to validate against.
-
-## Approach
-
-1. Parse and clean the review corpus (**28,363 reviews** with non-empty text)
-2. Classify each review against candidate label sets using zero-shot NLI models
-3. Validate predicted sentiment against the existing numeric rating — this is the evaluation signal
-4. Aggregate to per-course and per-instructor profiles
-
-Models compared:
-
-| Model | Notes |
-|---|---|
-| `facebook/bart-large-mnli` | Standard zero-shot baseline, slow |
-| `knowledgator/comprehend_it-base` | Much smaller, competitive on NLI-style classification |
-
-## Data
-
-`data/review_sample.csv` — a random 200-review sample, provided so the notebook runs out of the box.
-
-The full corpus is **not** committed. CULPA reviews are pseudonymous but name individual instructors, and redistributing the full scrape isn't something I want to do without checking their terms. The pipeline works on any CSV with `review` and `rating` columns.
+CULPA reviews pair a 1 to 5 rating with free text. The rating says whether someone liked the class. The text says why, and nobody has aggregated that. Zero-shot fits because the useful labels are unknown in advance and there is no labeled training set, while the numeric rating gives a partial ground truth to validate against.
 
 ## Running it
 
@@ -36,8 +12,24 @@ pip install -r requirements.txt
 jupyter lab notebooks/01_zero_shot_exploration.ipynb
 ```
 
-First run downloads model weights (~1.6GB for BART-MNLI).
+First run downloads model weights (about 1.6GB for BART-MNLI).
+
+## Approach
+
+1. Clean the corpus (28,363 reviews with non-empty text)
+2. Classify each review against candidate label sets
+3. Validate predicted sentiment against the numeric rating
+4. Aggregate to per-course and per-instructor profiles
+
+| Model | Notes |
+|---|---|
+| `facebook/bart-large-mnli` | Standard zero-shot baseline, slow |
+| `knowledgator/comprehend_it-base` | Much smaller, competitive on NLI classification |
+
+## Data
+
+`data/review_sample.csv` is a random 200-review sample so the notebook runs out of the box. The full corpus is not committed: reviews name individual instructors, and I have not confirmed CULPA's redistribution terms. The pipeline accepts any CSV with `review` and `rating` columns.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
